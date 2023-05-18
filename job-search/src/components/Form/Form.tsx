@@ -1,11 +1,14 @@
-import { Input, NumberInput, Button, Box, Stack, createStyles } from '@mantine/core';
+import { Input, NumberInput, Box, Stack, createStyles } from '@mantine/core';
 import { randomId } from '@mantine/hooks';
-import styles from './Form.module.css';
-import { COLOR_GRAY } from '@/constants/colors';
-import { STYLE_FORM_BUTTON } from '@/constants/styles';
-import iconChevronDown from '../../../public/IconChevronDown.svg';
-import iconCloseForm from '../../../public/iconCloseForm.svg';
 import Image from 'next/image';
+
+import { STYLE_FORM_BUTTON } from '@/constants/styles';
+import { COLOR_GRAY } from '@/constants/colors';
+import { ButtonVariant } from '@/types/buttons';
+import ButtonFullWidth from '../Buttons/ButtonFullWidth/ButtonFullWidth';
+import iconChevronDown from '@/../public/IconChevronDown.svg';
+import iconCloseForm from '@/../public/iconCloseForm.svg';
+import styles from './Form.module.css';
 
 const useStyles = createStyles(() => ({
   rightSection: {
@@ -70,9 +73,11 @@ export default function Form() {
           <NumberInput classNames={classes} min={0} step={5000} placeholder="От" />
           <NumberInput classNames={classes} min={0} step={5000} placeholder="До" />
         </Stack>
-        <Button styles={STYLE_FORM_BUTTON} fullWidth variant="filled">
-          Применить
-        </Button>
+        <ButtonFullWidth
+          style={STYLE_FORM_BUTTON}
+          option={ButtonVariant['FILLED']}
+          text="Применить"
+        />
       </Stack>
     </Box>
   );

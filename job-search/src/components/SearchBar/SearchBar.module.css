@@ -1,0 +1,16 @@
+.inputWrapper {
+  position: relative;
+  width: 773px;
+  height: 48px;
+  background-color: none;
+}
+
+.inputWrapper input {
+  height: 48px;
+}
+
+.button {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+}

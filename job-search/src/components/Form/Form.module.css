@@ -15,11 +15,8 @@
   flex-direction: column;
   gap: 27px;
   background-color: #FFFFFF;
-  position: absolute;
-  width: 315px;
+  min-width: 315px;
   height: 360px;
-  left: 162px;
-  top: 124px;
   background: #FFFFFF;
   border: 1px solid #EAEBED;
   border-radius: 12px;
