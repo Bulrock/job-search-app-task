@@ -1,0 +1,54 @@
+.numberInputTitle {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  padding-bottom: 2px;
+}
+
+.placeholder {
+  color: #ACADB9;
+}
+
+.form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  background-color: #FFFFFF;
+  position: absolute;
+  width: 315px;
+  height: 360px;
+  left: 162px;
+  top: 124px;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.formResetWrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.formReset {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #ACADB9;
+}

@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
 import Header from '@/components/Header/Header';
+import Form from '@/components/Form/Form';
 
 export default function VacancySearch() {
-
   return (
     <>
       <Head>
@@ -13,9 +13,7 @@ export default function VacancySearch() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="vacancySearchWrapper">
-        <h1>Vacancy Search Page</h1>
-      </div>
+      <Form />
     </>
   );
 }

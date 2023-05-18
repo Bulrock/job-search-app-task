@@ -10,4 +10,9 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #F5F5F5;
+}
+
+body {
+  background-color: none;
 }
