@@ -1,8 +1,16 @@
 .mainWrapper {
   display: flex;
+  height: calc(100vh - 84px);
   justify-content: center;
   gap: 28px;
   width: 100vw;
   padding: 40px 162px 44px 162px;
   background-color: #F5F5F5;
+}
+
+.responseRequestWrapper {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  max-width: 773px;
 }
