@@ -27,6 +27,12 @@
   font-size: 20px;
   line-height: 24px;
   color: #5E96FC;
+  height: 24px;
+  width: 650px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .salaryScheduleWrapper {
