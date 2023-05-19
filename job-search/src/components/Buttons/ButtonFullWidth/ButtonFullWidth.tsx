@@ -12,7 +12,7 @@ interface IButtonProps {
 
 export default function FullWidthButton({ style, option, text }: IButtonProps) {
   return (
-    <Button styles={style} fullWidth variant={option}>
+    <Button data-elem="search-button" styles={style} fullWidth variant={option}>
       {text}
     </Button>
   );

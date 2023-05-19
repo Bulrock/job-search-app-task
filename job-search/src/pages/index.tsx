@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import React from 'react';
 import Header from '@/components/Header/Header';
 import MainVacancySearch from '@/components/MainVacancySearch/MainVacancySearch';
 

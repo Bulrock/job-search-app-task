@@ -16,7 +16,14 @@ export default function ButtonStandart({
   option = 'filled',
 }: IButtonProps) {
   return (
-    <Button h={height} w={width} radius={8} color={color} variant={option}>
+    <Button
+      data-elem="search-button"
+      h={height}
+      w={width}
+      radius={8}
+      color={color}
+      variant={option}
+    >
       {text}
     </Button>
   );

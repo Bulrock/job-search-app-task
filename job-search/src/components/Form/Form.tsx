@@ -1,42 +1,38 @@
-import { Input, NumberInput, Box, Stack, createStyles } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { Input, NumberInput, Box, Stack } from '@mantine/core';
 import { randomId } from '@mantine/hooks';
 import Image from 'next/image';
 
+import cataloguesService from '@/services/cataloguesService';
+import { ICataloguesResponse } from '@/types/responses';
+import { useStyles } from '@/constants/formStyles';
 import { STYLE_FORM_BUTTON } from '@/constants/styles';
-import { COLOR_GRAY } from '@/constants/colors';
 import { ButtonVariant } from '@/types/buttons';
 import ButtonFullWidth from '../Buttons/ButtonFullWidth/ButtonFullWidth';
 import iconChevronDown from '@/../public/IconChevronDown.svg';
 import iconCloseForm from '@/../public/iconCloseForm.svg';
 import styles from './Form.module.css';
 
-const useStyles = createStyles(() => ({
-  rightSection: {
-    right: '5px',
-  },
-  input: {
-    paddingRight: 'calc(1.5rem + 0.0625rem + 0.75rem)',
-    borderRadius: '0.5rem',
-    height: '2.625rem',
-    letterSpacing: '0.03rem',
-  },
-  controlUp: {
-    borderLeft: 'none',
-    borderBottom: 'none',
-    color: COLOR_GRAY,
-  },
-  controlDown: {
-    borderLeft: 'none',
-    color: COLOR_GRAY,
-  },
-  rootButton: {
-    backgroundColor: '#5E96FC',
-  },
-}));
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 export default function Form() {
   const { classes } = useStyles();
+  const [catalogues, setCatalogues] = useState<ICataloguesResponse | null>(null);
+  const [isLoadingCatalogues, setIsLoadingCatalogues] = useState(false);
+
+  useEffect(() => {
+    setIsLoadingCatalogues(true);
+    cataloguesService()
+      .then((data) => {
+        if (typeof data !== 'string') {
+          setCatalogues(data);
+        } else {
+          setCatalogues(null);
+        }
+        setIsLoadingCatalogues(false);
+      })
+      .catch(() => {
+        setIsLoadingCatalogues(false);
+      });
+  }, []);
 
   return (
     <Box className={styles.form} maw={315}>
@@ -52,26 +48,41 @@ export default function Form() {
           <span className={styles.numberInputTitle}>Отрасль</span>
           <Input
             classNames={classes}
-            defaultValue={'default'}
+            data-elem="industry-select"
+            defaultValue="default"
             component="select"
             rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
           >
             <option className={styles.placeholder} key={randomId()} value="default" disabled>
               Выберите отрасль
             </option>
-            {arr.map((item) => {
-              return (
-                <option key={randomId()} value={item}>
-                  {item}
-                </option>
-              );
-            })}
+            {catalogues
+              ? catalogues.map((item) => {
+                  return (
+                    <option key={item.key} value={item.title_trimmed}>
+                      {item.title_trimmed}
+                    </option>
+                  );
+                })
+              : 'Отрасли отсутствуют'}
           </Input>
         </Stack>
         <Stack spacing={8}>
           <span className={styles.numberInputTitle}>Оклад</span>
-          <NumberInput classNames={classes} min={0} step={5000} placeholder="От" />
-          <NumberInput classNames={classes} min={0} step={5000} placeholder="До" />
+          <NumberInput
+            classNames={classes}
+            data-elem="salary-from-input"
+            min={0}
+            step={5000}
+            placeholder="От"
+          />
+          <NumberInput
+            classNames={classes}
+            data-elem="salary-to-input"
+            min={0}
+            step={5000}
+            placeholder="До"
+          />
         </Stack>
         <ButtonFullWidth
           style={STYLE_FORM_BUTTON}

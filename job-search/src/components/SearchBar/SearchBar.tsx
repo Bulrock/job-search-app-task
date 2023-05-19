@@ -12,6 +12,7 @@ export default function SearchBar() {
       <Input
         icon={<Image src={iconSearch} alt="Search Icon" />}
         placeholder="Введите название вакансии"
+        data-elem="search-input"
       />
       <div className={classes.button}>
         <ButtonStandart height={32} width={83} color={COLOR_BLUE_MAIN} text="Поиск" />

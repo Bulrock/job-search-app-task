@@ -5,19 +5,22 @@ import iconLocation from '../../../public/iconLocation.svg';
 import iconStar from '../../../public/iconStar.svg';
 import iconStarActive from '../../../public/iconStarActive.svg';
 import classes from './VacancyCard.module.css';
+import favouritesService from '@/services/favoritesService';
 
 interface IVacancyCardProps {
   title: string;
   salary: string;
   schedule: string;
   location: string;
+  id: number;
 }
 
-export default function VacancyCard({ title, salary, schedule, location }: IVacancyCardProps) {
+export default function VacancyCard({ title, salary, schedule, location, id }: IVacancyCardProps) {
   const [active, setActive] = useState(false);
 
   const handleFavoriteClick = () => {
     setActive(!active);
+    favouritesService(active, id);
   };
 
   return (
