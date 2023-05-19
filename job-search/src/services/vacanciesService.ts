@@ -20,9 +20,10 @@ export default async function vacanciesService({
   keyword,
 }: IVacanciesServiceProps): Promise<IVacancy[]> {
   const encodedURI = keyword ? encodeURIComponent(keyword) : '';
+  const pageIndex = page - 1;
 
   const response = await fetch(
-    `${ENDPOINT_VACANCY}/?count=${PER_PAGE}&page=${page}&published=${PUBLISHED}&keyword=${encodedURI}&payment_from=${payment_from}&payment_to=${payment_to}&catalogues=${catalogues}`,
+    `${ENDPOINT_VACANCY}/?count=${PER_PAGE}&page=${pageIndex}&published=${PUBLISHED}&keyword=${encodedURI}&payment_from=${payment_from}&payment_to=${payment_to}&catalogues=${catalogues}`,
     {
       method: 'GET',
       headers: {

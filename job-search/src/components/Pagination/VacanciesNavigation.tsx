@@ -9,7 +9,7 @@ interface IVacanciesNavigationProps {
 }
 
 export default function VacanciesNavigation({ total, onPageChange }: IVacanciesNavigationProps) {
-  const [activePage, setPage] = useState(1);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     onPageChange(activePage);
@@ -17,7 +17,7 @@ export default function VacanciesNavigation({ total, onPageChange }: IVacanciesN
 
   return (
     <div className={classes.navigationWrapper}>
-      <Pagination value={activePage} onChange={setPage} total={total + 1} />
+      <Pagination value={activePage} onChange={setActivePage} total={total} />
     </div>
   );
 }
