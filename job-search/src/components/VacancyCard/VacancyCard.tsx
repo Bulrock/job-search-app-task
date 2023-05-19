@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import iconLocation from '../../../public/iconLocation.svg';
 import iconStar from '../../../public/iconStar.svg';
 import iconStarActive from '../../../public/iconStarActive.svg';
 import classes from './VacancyCard.module.css';
-import favouritesService from '@/services/favoritesService';
+import favouriteService from '@/services/favoriteService';
+import favoriteInitialService from '@/services/favoriteInitialService';
 
 interface IVacancyCardProps {
   title: string;
@@ -18,9 +19,12 @@ interface IVacancyCardProps {
 export default function VacancyCard({ title, salary, schedule, location, id }: IVacancyCardProps) {
   const [active, setActive] = useState(false);
 
+  useEffect(() => {
+    setActive(favoriteInitialService(id));
+  }, [id]);
+
   const handleFavoriteClick = () => {
-    setActive(!active);
-    favouritesService(active, id);
+    setActive(!favouriteService(id));
   };
 
   return (
