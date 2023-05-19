@@ -39,6 +39,14 @@
   display: flex;
   gap: 4px;
   align-items: center;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  color: #ACADB9;
+}
+
+.formResetWrapper:hover {
+  transform: scale(1.03);
+  color: #5E96FC;
 }
 
 .formReset {
@@ -47,5 +55,4 @@
   line-height: 20px;
   display: flex;
   align-items: center;
-  color: #ACADB9;
 }

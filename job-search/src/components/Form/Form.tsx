@@ -32,6 +32,10 @@ export default function Form({ onFilterSubmit }: IFormProps) {
     },
   });
 
+  function onFormReset() {
+    form.reset();
+  }
+
   useEffect(() => {
     setIsLoadingCatalog(true);
     cataloguesService()
@@ -53,7 +57,7 @@ export default function Form({ onFilterSubmit }: IFormProps) {
       <form onSubmit={form.onSubmit((values) => onFilterSubmit(values))}>
         <div className={styles.formHeader}>
           <span className={styles.formTitle}>Фильтры</span>
-          <div className={styles.formResetWrapper}>
+          <div onClick={onFormReset} className={styles.formResetWrapper}>
             <span className={styles.formReset}>Сбросить все</span>
             <Image width={16} height={16} src={iconCloseForm} alt="icon close" />
           </div>
