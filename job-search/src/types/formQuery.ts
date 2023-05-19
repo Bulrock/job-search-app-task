@@ -3,3 +3,7 @@ export interface IFormQuery {
   slaryFrom: string | number | '';
   slaryTo: string | number | '';
 }
+
+export interface ISearchQuery {
+  keyword: string | '';
+}

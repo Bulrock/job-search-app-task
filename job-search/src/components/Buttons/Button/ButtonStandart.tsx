@@ -23,6 +23,7 @@ export default function ButtonStandart({
       radius={8}
       color={color}
       variant={option}
+      type="submit"
     >
       {text}
     </Button>

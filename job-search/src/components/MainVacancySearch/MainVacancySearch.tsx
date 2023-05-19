@@ -7,10 +7,10 @@ import VacanciesNavigation from '../Pagination/VacanciesNavigation';
 import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
-import { INITIAL_FORM_QUERY } from '@/constants/initialFormQuery';
+import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
 import classes from './MainVacancySearch.module.css';
 import { IVacancy } from '@/types/vacancies';
-import { IFormQuery } from '@/types/formQuery';
+import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 
 export default function MainVacancySearch() {
   const [page, setPage] = useState(0);
@@ -18,11 +18,13 @@ export default function MainVacancySearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(0);
   const [formQuery, setFormQuery] = useState<IFormQuery>(INITIAL_FORM_QUERY);
+  const [searchQuery, setSearchQuery] = useState<ISearchQuery>(INITIAL_SEARCH_QUERY);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const expirationDate = localStorage.getItem('ttl');
     const { catalogKey, slaryFrom, slaryTo } = formQuery;
+    const { keyword } = searchQuery;
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
       authService().then(() => {
@@ -32,7 +34,7 @@ export default function MainVacancySearch() {
           payment_from: slaryFrom,
           payment_to: slaryTo,
           catalogues: catalogKey,
-          keyword: '',
+          keyword,
         })
           .then((data) => {
             setIsLoading(false);
@@ -52,7 +54,7 @@ export default function MainVacancySearch() {
         payment_from: slaryFrom,
         payment_to: slaryTo,
         catalogues: catalogKey,
-        keyword: '',
+        keyword,
       })
         .then((data) => {
           setIsLoading(false);
@@ -65,13 +67,13 @@ export default function MainVacancySearch() {
           setTotal(1);
         });
     }
-  }, [formQuery, page]);
+  }, [formQuery, page, searchQuery]);
 
   return (
     <div className={classes.mainWrapper}>
       <Form onFilterSubmit={setFormQuery} />
       <div className={classes.responseRequestWrapper}>
-        <SearchBar />
+        <SearchBar onSearchSubmit={setSearchQuery} />
         {isLoading ? (
           <LoaderRequest />
         ) : (
