@@ -1,12 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import Form from '@/components/Form/Form';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import VacancyCard from '../VacancyCard/VacancyCard';
-import classes from './MainVacancySearch.module.css';
-import { useEffect, useState } from 'react';
+import VacanciesNavigation from '../Pagination/VacanciesNavigation';
+import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import vacanciesInitialService from '@/services/vacanciesInitialService';
 import authService from '@/services/authService';
+import classes from './MainVacancySearch.module.css';
 import { IVacancy } from '@/types/vacancies';
-import VacanciesNavigation from '../Pagination/VacanciesNavigation';
 
 export default function MainVacancySearch() {
   const [page, setPage] = useState(0);
@@ -20,6 +22,7 @@ export default function MainVacancySearch() {
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
       authService().then(() => {
+        setIsLoading(true);
         vacanciesInitialService(page)
           .then((data) => {
             setIsLoading(false);
@@ -33,6 +36,7 @@ export default function MainVacancySearch() {
           });
       });
     } else {
+      setIsLoading(true);
       vacanciesInitialService(page)
         .then((data) => {
           setIsLoading(false);
@@ -52,16 +56,20 @@ export default function MainVacancySearch() {
       <Form />
       <div className={classes.responseRequestWrapper}>
         <SearchBar />
-        {vacancies?.map((vacancy) => (
-          <VacancyCard
-            key={vacancy.id}
-            title={vacancy.profession}
-            salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
-            schedule={vacancy.type_of_work.title}
-            location={vacancy.town.title}
-            id={vacancy.id}
-          />
-        ))}
+        {isLoading ? (
+          <LoaderRequest />
+        ) : (
+          vacancies?.map((vacancy) => (
+            <VacancyCard
+              key={vacancy.id}
+              title={vacancy.profession}
+              salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
+              schedule={vacancy.type_of_work.title}
+              location={vacancy.town.title}
+              id={vacancy.id}
+            />
+          ))
+        )}
         <VacanciesNavigation onPageChange={setPage} total={total} />
       </div>
     </div>
