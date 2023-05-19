@@ -3,7 +3,7 @@ import { IVacancy } from '@/types/vacancies';
 
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
 
-export default async function vacanciesInitialService(page: string): Promise<IVacancy[]> {
+export default async function vacanciesInitialService(page: number): Promise<IVacancy[]> {
   const response = await fetch(`${ENDPOINT_VACANCY}/?count=4&page=${page}`, {
     method: 'GET',
     headers: {
@@ -20,6 +20,7 @@ export default async function vacanciesInitialService(page: string): Promise<IVa
 
   const responseJSON = await response.json();
   console.log(responseJSON);
+  localStorage.setItem('total', JSON.stringify(Math.floor(responseJSON['total'] / 4)));
 
   return responseJSON['objects'];
 }

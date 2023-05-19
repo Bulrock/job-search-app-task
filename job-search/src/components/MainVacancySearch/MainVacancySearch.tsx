@@ -6,11 +6,13 @@ import { useEffect, useState } from 'react';
 import vacanciesInitialService from '@/services/vacanciesInitialService';
 import authService from '@/services/authService';
 import { IVacancy } from '@/types/vacancies';
+import VacanciesNavigation from '../Pagination/VacanciesNavigation';
 
 export default function MainVacancySearch() {
-  const [page, setPage] = useState('0');
+  const [page, setPage] = useState(0);
   const [vacancies, setVacancies] = useState<IVacancy[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -22,10 +24,12 @@ export default function MainVacancySearch() {
           .then((data) => {
             setIsLoading(false);
             setVacancies(data);
+            setTotal(Number(localStorage.getItem('total')));
           })
           .catch(() => {
             setIsLoading(false);
             setVacancies(null);
+            setTotal(1);
           });
       });
     } else {
@@ -33,13 +37,15 @@ export default function MainVacancySearch() {
         .then((data) => {
           setIsLoading(false);
           setVacancies(data);
+          setTotal(Number(localStorage.getItem('total')));
         })
         .catch(() => {
           setIsLoading(false);
           setVacancies(null);
+          setTotal(1);
         });
     }
-  }, [page]);
+  }, [page, total]);
 
   return (
     <div className={classes.mainWrapper}>
@@ -56,6 +62,7 @@ export default function MainVacancySearch() {
             id={vacancy.id}
           />
         ))}
+        <VacanciesNavigation onPageChange={setPage} total={total} />
       </div>
     </div>
   );
