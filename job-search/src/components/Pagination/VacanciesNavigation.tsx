@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Pagination } from '@mantine/core';
 
 import classes from './VacanciesNavigation.module.css';
@@ -6,18 +6,17 @@ import classes from './VacanciesNavigation.module.css';
 interface IVacanciesNavigationProps {
   total: number;
   onPageChange: Dispatch<SetStateAction<number>>;
+  page: number;
 }
 
-export default function VacanciesNavigation({ total, onPageChange }: IVacanciesNavigationProps) {
-  const [activePage, setActivePage] = useState(1);
-
-  useEffect(() => {
-    onPageChange(activePage);
-  }, [activePage, onPageChange]);
-
+export default function VacanciesNavigation({
+  total,
+  onPageChange,
+  page,
+}: IVacanciesNavigationProps) {
   return (
     <div className={classes.navigationWrapper}>
-      <Pagination value={activePage} onChange={setActivePage} total={total} />
+      <Pagination value={page} onChange={onPageChange} total={total} />
     </div>
   );
 }

@@ -13,12 +13,22 @@ import { IVacancy } from '@/types/vacancies';
 import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 
 export default function MainVacancySearch() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [vacancies, setVacancies] = useState<IVacancy[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(0);
   const [formQuery, setFormQuery] = useState<IFormQuery>(INITIAL_FORM_QUERY);
   const [searchQuery, setSearchQuery] = useState<ISearchQuery>(INITIAL_SEARCH_QUERY);
+
+  function handleFormSubmit(formQuery: IFormQuery) {
+    setPage(1);
+    setFormQuery(formQuery);
+  }
+
+  function handleSearchSubmit(searchQuery: ISearchQuery) {
+    setPage(1);
+    setSearchQuery(searchQuery);
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -71,9 +81,9 @@ export default function MainVacancySearch() {
 
   return (
     <div className={classes.mainWrapper}>
-      <Form onFilterSubmit={setFormQuery} />
+      <Form onFormSubmit={handleFormSubmit} />
       <div className={classes.responseRequestWrapper}>
-        <SearchBar onSearchSubmit={setSearchQuery} />
+        <SearchBar onSearchSubmit={handleSearchSubmit} />
         {isLoading ? (
           <LoaderRequest />
         ) : (
@@ -88,7 +98,7 @@ export default function MainVacancySearch() {
             />
           ))
         )}
-        <VacanciesNavigation onPageChange={setPage} total={total} />
+        <VacanciesNavigation page={page} onPageChange={setPage} total={total} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input, NumberInput, Box, Stack } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { randomId } from '@mantine/hooks';
@@ -16,10 +16,10 @@ import styles from './Form.module.css';
 import { IFormQuery } from '@/types/formQuery';
 
 interface IFormProps {
-  onFilterSubmit: Dispatch<SetStateAction<IFormQuery>>;
+  onFormSubmit: (formQuery: IFormQuery) => void;
 }
 
-export default function Form({ onFilterSubmit }: IFormProps) {
+export default function Form({ onFormSubmit }: IFormProps) {
   const { classes } = useStyles();
   const [catalogues, setCatalogues] = useState<ICataloguesResponse | null>(null);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
@@ -54,7 +54,7 @@ export default function Form({ onFilterSubmit }: IFormProps) {
 
   return (
     <Box className={styles.form} maw={315}>
-      <form onSubmit={form.onSubmit((values) => onFilterSubmit(values))}>
+      <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
         <div className={styles.formHeader}>
           <span className={styles.formTitle}>Фильтры</span>
           <div onClick={onFormReset} className={styles.formResetWrapper}>

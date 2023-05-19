@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { useForm } from '@mantine/form';
 import { Input } from '@mantine/core';
 import Image from 'next/image';
@@ -10,7 +9,7 @@ import iconSearch from '../../../public/iconSearch.svg';
 import classes from './SearchBar.module.css';
 
 interface ISearchBarProps {
-  onSearchSubmit: Dispatch<SetStateAction<ISearchQuery>>;
+  onSearchSubmit: (searchQuery: ISearchQuery) => void;
 }
 
 export default function SearchBar({ onSearchSubmit }: ISearchBarProps) {
