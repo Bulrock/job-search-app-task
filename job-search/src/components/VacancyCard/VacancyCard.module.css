@@ -1,0 +1,73 @@
+.cardWrapper {
+  display: flex;
+  gap: 1rem;
+  max-width: 773px;
+  height: 137px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  margin-top: -4px;
+  padding: 24px;
+  cursor: pointer;
+}
+
+.cardWrapper img {
+  cursor: pointer;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5E96FC;
+  height: 24px;
+  width: 650px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.salaryScheduleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.salary {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.schedule {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.locationWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.locationWrapper img {
+  cursor: default;
+}
+
+.location {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #232134;
+}
