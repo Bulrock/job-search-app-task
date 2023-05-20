@@ -10,6 +10,7 @@ export interface IVacancy {
   payment: string;
   profession: string;
   work: string;
+  vacancyRichText: string;
   metro: [
     {
       id: number;

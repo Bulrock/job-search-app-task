@@ -7,6 +7,7 @@ import iconStarActive from '../../../public/iconStarActive.svg';
 import classes from './VacancyCard.module.css';
 import favouriteService from '@/services/favoriteService';
 import favoriteInitialService from '@/services/favoriteInitialService';
+import { useRouter } from 'next/router';
 
 interface IVacancyCardProps {
   title: string;
@@ -18,17 +19,23 @@ interface IVacancyCardProps {
 
 export default function VacancyCard({ title, salary, schedule, location, id }: IVacancyCardProps) {
   const [active, setActive] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setActive(favoriteInitialService(id));
   }, [id]);
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (event: React.MouseEvent<HTMLImageElement>) => {
+    event.stopPropagation();
     setActive(!favouriteService(id));
   };
 
+  const handleCardClick = () => {
+    router.push(`/vacancy/${id}`);
+  };
+
   return (
-    <div className={classes.cardWrapper}>
+    <div onClick={handleCardClick} className={classes.cardWrapper}>
       <div className={classes.leftSection}>
         <span className={classes.title}>{title}</span>
         <div className={classes.salaryScheduleWrapper}>

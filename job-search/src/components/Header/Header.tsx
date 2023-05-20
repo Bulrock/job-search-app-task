@@ -13,7 +13,13 @@ export default function Header() {
       <div className={classes.header}>
         <div className={classes.links}>
           <Link legacyBehavior href="/">
-            <a className={router.pathname == '/' ? classes.active : classes.notactive}>
+            <a
+              className={
+                router.pathname == '/' || router.pathname == `/vacancy/[${router.query.id}]`
+                  ? classes.active
+                  : classes.notactive
+              }
+            >
               Поиск Вакансий
             </a>
           </Link>
