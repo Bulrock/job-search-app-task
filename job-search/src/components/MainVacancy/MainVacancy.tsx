@@ -58,11 +58,11 @@ export default function MainVacancy() {
           <>
             <VacancyCard
               key={vacancy.id}
-              title={vacancy.profession || 'qwert'}
+              title={vacancy.profession}
               salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
-              schedule={vacancy.type_of_work?.title || 'TYPE OF WORK'}
-              location={vacancy.town?.title || 'TOWN'}
-              id={vacancy.id || 2}
+              schedule={vacancy.type_of_work?.title}
+              location={vacancy.town?.title}
+              id={vacancy.id}
             />
             {vacancy.vacancyRichText ? (
               <div
