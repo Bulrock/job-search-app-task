@@ -7,9 +7,9 @@ import vacancyDetailsService from '@/services/vacancyDetailsService';
 import authService from '@/services/authService';
 import { VACANCY_DETAILS } from '@/constants/vacancyDetails';
 import { IVacancy } from '@/types/vacancies';
-import classes from './MainVacancy.module.css';
+import classes from './VacancyDetails.module.css';
 
-export default function MainVacancy() {
+export default function VacancyDetails() {
   const [vacancy, setVacancy] = useState<IVacancy | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -77,7 +77,9 @@ export default function MainVacancy() {
             )}
           </>
         ) : (
-          'Вакансия отсутствует!'
+          <span className={classes.error}>
+            Упс, не удалось загрузить вакансию! Попробуйте снова
+          </span>
         )}
       </div>
     </div>

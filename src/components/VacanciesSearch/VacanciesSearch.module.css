@@ -14,3 +14,11 @@
   flex-direction: column;
   max-width: 773px;
 }
+
+.error {
+  font-weight: 500;
+  font-size: 18px;
+  color: red;
+  line-height: 20px;
+  text-align: center;
+}

@@ -23,6 +23,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
   const { classes } = useStyles();
   const [catalogues, setCatalogues] = useState<ICataloguesResponse | null>(null);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
+  const [error, setError] = useState(false);
 
   const form = useForm({
     initialValues: {
@@ -49,8 +50,45 @@ export default function Form({ onFormSubmit }: IFormProps) {
       })
       .catch(() => {
         setIsLoadingCatalog(false);
+        setError(true);
       });
   }, []);
+
+  const renderCatalogInput = () => {
+    if (error) {
+      return (
+        <span className={styles.error}>Упс, не удалось загрузить каталог! Попробуйте снова</span>
+      );
+    }
+
+    if (isLoadingCatalog) {
+      return <LoaderCatalog />;
+    } else {
+      return (
+        <Input
+          classNames={classes}
+          data-elem="industry-select"
+          component="select"
+          rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
+          {...form.getInputProps('catalogKey')}
+        >
+          <option className={styles.placeholder} key="default" value="default" disabled>
+            Выберите отрасль
+          </option>
+
+          {catalogues
+            ? catalogues.map((item) => {
+                return (
+                  <option key={item.key} value={item.key}>
+                    {item.title_trimmed}
+                  </option>
+                );
+              })
+            : 'Отрасли отсутствуют'}
+        </Input>
+      );
+    }
+  };
 
   return (
     <Box className={styles.form} maw={315}>
@@ -65,31 +103,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
         <Stack spacing={20}>
           <Stack spacing={8}>
             <span className={styles.numberInputTitle}>Отрасль</span>
-            {isLoadingCatalog ? (
-              <LoaderCatalog />
-            ) : (
-              <Input
-                classNames={classes}
-                data-elem="industry-select"
-                component="select"
-                rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
-                {...form.getInputProps('catalogKey')}
-              >
-                <option className={styles.placeholder} key="default" value="default" disabled>
-                  Выберите отрасль
-                </option>
-
-                {catalogues
-                  ? catalogues.map((item) => {
-                      return (
-                        <option key={item.key} value={item.key}>
-                          {item.title_trimmed}
-                        </option>
-                      );
-                    })
-                  : 'Отрасли отсутствуют'}
-              </Input>
-            )}
+            {renderCatalogInput()}
           </Stack>
           <Stack spacing={8}>
             <span className={styles.numberInputTitle}>Оклад</span>

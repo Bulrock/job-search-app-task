@@ -8,7 +8,7 @@
   background-color: #F5F5F5;
 }
 
-.responseRequestWrapper {
+.responseWrapper {
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -40,4 +40,37 @@
   padding-left: 24px;
   margin-top: 16px;
   margin-bottom: 20px;
+}
+
+.vacanciesAbsentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.vacanciesAbsentWrapper button {
+  color: #3B7CD3;
+  background-color: #DEECFF;
+}
+
+.absentTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: #343A40;
+}
+
+.error {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: #343A40;
 }

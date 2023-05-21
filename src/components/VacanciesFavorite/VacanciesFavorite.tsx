@@ -8,24 +8,25 @@ import iconNothing from '../../../public/iconNothing.svg';
 import vacancyFavoritesService from '@/services/vacanciesFavoritesService';
 import authService from '@/services/authService';
 import { IVacancy } from '@/types/vacancies';
-import classes from './MainFavorites.module.css';
+import classes from './VacanciesFavorite.module.css';
 import ButtonStandart from '../Buttons/Button/ButtonStandart';
 import Link from 'next/link';
 
-export default function MainFavorites() {
-  const [vacancies, setVacancies] = useState<IVacancy[] | null>(null);
+export default function VacanciesFavorite() {
+  const [vacancies, setVacancies] = useState<IVacancy[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
-  const [pagesAmount, setPagesAmount] = useState(1);
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const pagesAmount = Math.ceil(favoriteIds.length / 4);
+
+  useEffect(() => {
+    setFavoriteIds(JSON.parse(localStorage.getItem('favorites') || '[]'));
+  }, []);
 
   const refreshFavorites = useCallback(() => {
     const token = localStorage.getItem('access_token');
     const expirationDate = localStorage.getItem('ttl');
-
-    const favorites = localStorage.getItem('favorites');
-    const favoritesArray: number[] = favorites ? JSON.parse(favorites) : 1;
-    const pagesNumber = Math.ceil(favoritesArray.length / 4);
-    setPagesAmount(pagesNumber);
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
       authService().then(() => {
@@ -36,8 +37,9 @@ export default function MainFavorites() {
             setVacancies(data);
           })
           .catch(() => {
+            setError(true);
             setIsLoading(false);
-            setVacancies(null);
+            setVacancies([]);
           });
       });
     } else {
@@ -48,26 +50,43 @@ export default function MainFavorites() {
           setVacancies(data);
         })
         .catch(() => {
+          setError(true);
           setIsLoading(false);
-          setVacancies(null);
+          setVacancies([]);
         });
     }
   }, [page]);
 
   useEffect(() => {
+    if (page > pagesAmount) {
+      setPage(pagesAmount - 1);
+      return;
+    }
     refreshFavorites();
-  }, [refreshFavorites]);
+  }, [page, favoriteIds, refreshFavorites, pagesAmount]);
 
   const handleFavoriteRemove = () => {
-    refreshFavorites();
+    setFavoriteIds(JSON.parse(localStorage.getItem('favorites') || '[]'));
   };
+
+  if (error) {
+    return (
+      <div className={classes.mainWrapper}>
+        <div className={classes.responseWrapper}>
+          <span className={classes.error}>
+            Упс, не удалось загрузить избранные вакансии! Попробуйте еще раз
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={classes.mainWrapper}>
       <div className={classes.responseWrapper}>
         {isLoading ? (
           <LoaderRequest />
-        ) : vacancies && vacancies?.length !== 0 ? (
+        ) : vacancies && vacancies?.length !== 0 && !error ? (
           vacancies.map((vacancy) => (
             <VacancyCard
               key={vacancy.id}

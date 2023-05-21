@@ -3,13 +3,16 @@ import { IVacancy } from '@/types/vacancies';
 
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
 import { PER_PAGE } from '@/constants/queryParameters';
+import { VACANCIES_MOCK } from '@/constants/vacanciesMock';
 
-export default async function vacancyFavoritesService(page: number): Promise<IVacancy[] | null> {
+export default async function vacancyFavoritesService(page: number): Promise<IVacancy[]> {
   const favoritesIdArray = localStorage.getItem('favorites');
   const pageIndex = page - 1;
 
+  return VACANCIES_MOCK;
+
   if (favoritesIdArray?.length === 0) {
-    return null;
+    return [];
   } else {
     const idArray = JSON.parse(favoritesIdArray || '[]');
     const params = `ids[]=${idArray.join('&ids[]=')}`;

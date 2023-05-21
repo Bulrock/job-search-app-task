@@ -8,15 +8,16 @@ import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
 import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
-import classes from './MainVacancySearch.module.css';
+import classes from './VacanciesSearch.module.css';
 import { IVacancy } from '@/types/vacancies';
 import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 
-export default function MainVacancySearch() {
+export default function VacanciesSearch() {
   const [page, setPage] = useState(1);
   const [vacancies, setVacancies] = useState<IVacancy[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(0);
+  const [error, setError] = useState(false);
   const [formQuery, setFormQuery] = useState<IFormQuery>(INITIAL_FORM_QUERY);
   const [searchQuery, setSearchQuery] = useState<ISearchQuery>(INITIAL_SEARCH_QUERY);
 
@@ -55,6 +56,7 @@ export default function MainVacancySearch() {
             setIsLoading(false);
             setVacancies(null);
             setTotal(1);
+            setError(true);
           });
       });
     } else {
@@ -75,29 +77,40 @@ export default function MainVacancySearch() {
           setIsLoading(false);
           setVacancies(null);
           setTotal(1);
+          setError(true);
         });
     }
   }, [formQuery, page, searchQuery]);
+
+  const renderVacancies = () => {
+    if (error) {
+      return (
+        <span className={classes.error}>Упс, не удалось загрузить вакансии! Попробуйте снова</span>
+      );
+    }
+
+    if (isLoading) {
+      return <LoaderRequest />;
+    } else {
+      return vacancies?.map((vacancy) => (
+        <VacancyCard
+          key={vacancy.id}
+          title={vacancy.profession}
+          salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
+          schedule={vacancy.type_of_work.title}
+          location={vacancy.town.title}
+          id={vacancy.id}
+        />
+      ));
+    }
+  };
 
   return (
     <div className={classes.mainWrapper}>
       <Form onFormSubmit={handleFormSubmit} />
       <div className={classes.responseRequestWrapper}>
         <SearchBar onSearchSubmit={handleSearchSubmit} />
-        {isLoading ? (
-          <LoaderRequest />
-        ) : (
-          vacancies?.map((vacancy) => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.profession}
-              salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
-              schedule={vacancy.type_of_work.title}
-              location={vacancy.town.title}
-              id={vacancy.id}
-            />
-          ))
-        )}
+        {renderVacancies()}
         <VacanciesNavigation page={page} onPageChange={setPage} total={total} />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Header from '@/components/Header/Header';
-import MainVacancySearch from '@/components/MainVacancySearch/MainVacancySearch';
+import VacanciesSearch from '@/components/VacanciesSearch/VacanciesSearch';
 
 export default function VacancySearchPage() {
   return (
@@ -12,7 +12,7 @@ export default function VacancySearchPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <MainVacancySearch />
+      <VacanciesSearch />
     </>
   );
 }
