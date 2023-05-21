@@ -11,8 +11,8 @@ import { IFormQuery } from '@/types/formQuery';
 import { ButtonVariant } from '@/types/buttons';
 import LoaderCatalog from '../LoaderCatalog/LoaderCatalog';
 import ButtonFullWidth from '../Buttons/ButtonFullWidth/ButtonFullWidth';
-import iconChevronDown from '@/../public/IconChevronDown.svg';
-import iconCloseForm from '@/../public/iconCloseForm.svg';
+import iconChevronDown from '../../../public/iconChevronDown.svg';
+import iconCloseForm from '../../../public/iconCloseForm.svg';
 import styles from './Form.module.css';
 
 interface IFormProps {
