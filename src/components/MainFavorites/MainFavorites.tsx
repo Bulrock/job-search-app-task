@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import VacancyCard from '../VacancyCard/VacancyCard';
@@ -18,7 +18,7 @@ export default function MainFavorites() {
   const [page, setPage] = useState(1);
   const [pagesAmount, setPagesAmount] = useState(1);
 
-  useEffect(() => {
+  const refreshFavorites = useCallback(() => {
     const token = localStorage.getItem('access_token');
     const expirationDate = localStorage.getItem('ttl');
 
@@ -52,7 +52,15 @@ export default function MainFavorites() {
           setVacancies(null);
         });
     }
-  }, [page, pagesAmount]);
+  }, [page]);
+
+  useEffect(() => {
+    refreshFavorites();
+  }, [refreshFavorites]);
+
+  const handleFavoriteRemove = () => {
+    refreshFavorites();
+  };
 
   return (
     <div className={classes.mainWrapper}>
@@ -68,6 +76,7 @@ export default function MainFavorites() {
               schedule={vacancy.type_of_work.title}
               location={vacancy.town.title}
               id={vacancy.id}
+              onFavoriteRemove={handleFavoriteRemove}
             />
           ))
         ) : (

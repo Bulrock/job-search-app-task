@@ -15,9 +15,17 @@ interface IVacancyCardProps {
   schedule: string;
   location: string;
   id: number;
+  onFavoriteRemove?: () => void;
 }
 
-export default function VacancyCard({ title, salary, schedule, location, id }: IVacancyCardProps) {
+export default function VacancyCard({
+  title,
+  salary,
+  schedule,
+  location,
+  id,
+  onFavoriteRemove,
+}: IVacancyCardProps) {
   const [active, setActive] = useState(false);
   const router = useRouter();
 
@@ -28,6 +36,9 @@ export default function VacancyCard({ title, salary, schedule, location, id }: I
   const handleFavoriteClick = (event: React.MouseEvent<HTMLImageElement>) => {
     event.stopPropagation();
     setActive(!favouriteService(id));
+    if (onFavoriteRemove) {
+      onFavoriteRemove();
+    }
   };
 
   const handleCardClick = () => {
