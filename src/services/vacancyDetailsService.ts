@@ -10,7 +10,7 @@ interface IVacancyDetailsServiceProps {
 export default async function vacancyDetailsService({
   id,
 }: IVacancyDetailsServiceProps): Promise<IVacancy> {
-  const response = await fetch(`${ENDPOINT_VACANCY}/${id}`, {
+  const response = await fetch(`${ENDPOINT_VACANCY}/${id}/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
