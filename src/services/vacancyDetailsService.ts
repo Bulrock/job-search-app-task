@@ -4,7 +4,7 @@ import { IVacancy } from '@/types/vacancies';
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
 
 interface IVacancyDetailsServiceProps {
-  id: number | null;
+  id: number;
 }
 
 export default async function vacancyDetailsService({
