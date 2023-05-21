@@ -34,7 +34,7 @@ export default function VacanciesSearch() {
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const expirationDate = localStorage.getItem('ttl');
-    const { catalogKey, slaryFrom, slaryTo } = formQuery;
+    const { industryKey: catalogKey, slaryFrom, slaryTo } = formQuery;
     const { keyword } = searchQuery;
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {

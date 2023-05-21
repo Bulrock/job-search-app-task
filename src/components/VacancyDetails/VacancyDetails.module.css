@@ -3,7 +3,6 @@
   min-height: calc(100vh - 84px);
   justify-content: center;
   gap: 28px;
-  width: 100vw;
   padding: 40px 162px 44px 162px;
   background-color: #F5F5F5;
 }
@@ -48,4 +47,20 @@
   color: red;
   line-height: 20px;
   text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .mainWrapper {
+    padding: 40px 10px 44px 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .mainWrapper {
+    padding: 20px 10px 20px 10px;
+  }
+
+  .content {
+    padding: 12px 12px 12px;
+  }
 }

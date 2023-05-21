@@ -1,5 +1,5 @@
 export const INITIAL_FORM_QUERY = {
-  catalogKey: '',
+  industryKey: '',
   slaryFrom: '',
   slaryTo: '',
 };

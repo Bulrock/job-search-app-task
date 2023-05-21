@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
 .formTitle {
@@ -57,10 +58,26 @@
   align-items: center;
 }
 
+.wrapper option .placeholder {
+  color: #ACADB9;
+}
+
 .error {
   font-weight: 500;
   font-size: 16px;
   color: red;
   line-height: 20px;
   text-align: left;
+}
+
+@media screen and (max-width: 1200px) {
+  .form {
+    min-width: 48rem;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .form {
+    min-width: calc(100vw - 40px);
+  }
 }

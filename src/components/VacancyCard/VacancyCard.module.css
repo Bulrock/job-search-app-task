@@ -71,3 +71,36 @@
   line-height: 19px;
   color: #232134;
 }
+
+@media screen and (max-width: 840px) {
+  .cardWrapper {
+    max-width: calc(100vw - 40px);
+  }
+
+  .salaryScheduleWrapper {
+    flex-wrap: wrap;
+  }
+
+  .title {
+   width: 100%;
+  }
+
+  .leftSection {
+    max-width: calc(100% - 50px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardWrapper {
+    height: fit-content;
+    min-height: 137px;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 25px;
+    height: fit-content;
+    white-space: pre-wrap;
+  }
+}

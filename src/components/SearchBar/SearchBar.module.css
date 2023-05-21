@@ -16,3 +16,28 @@
   right: 12px;
   bottom: 8px;
 }
+
+.button button {
+  background-color: #5E96FC;
+}
+
+@media screen and (max-width: 840px) {
+  .inputWrapper {
+    width: calc(100vw - 40px);
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .inputWrapper input {
+    padding-right: 5rem;
+    padding-left: 2rem;
+  }
+
+  .button button {
+    width: 4rem;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #5E96FC;
+    border-radius: 8px;
+  }
+}

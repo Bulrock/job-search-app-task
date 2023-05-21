@@ -48,3 +48,40 @@
   color: #232134;
   letter-spacing: 0.8px;
 }
+
+@media screen and (max-width: 1200px) {
+  .headerWrapper {
+    padding: 0 100px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header {
+    margin-right: 0;
+  }
+  .headerWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .headerWrapper {
+    flex-wrap: nowrap;
+  }
+
+  .links a {
+    width: 130px;
+    justify-content: center;
+  }
+
+  .links {
+    gap: 20px;
+  }
+
+  .headerWrapper img {
+    padding-top: 10px;
+  }
+}

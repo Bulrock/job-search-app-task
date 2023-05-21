@@ -1,5 +1,5 @@
 export interface IFormQuery {
-  catalogKey: string | '';
+  industryKey: string | '';
   slaryFrom: string | number | '';
   slaryTo: string | number | '';
 }

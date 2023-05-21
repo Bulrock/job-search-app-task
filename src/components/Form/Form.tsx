@@ -21,13 +21,13 @@ interface IFormProps {
 
 export default function Form({ onFormSubmit }: IFormProps) {
   const { classes } = useStyles();
-  const [catalogues, setCatalogues] = useState<ICataloguesResponse | null>(null);
+  const [catalog, setCatalog] = useState<ICataloguesResponse | null>(null);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
   const [error, setError] = useState(false);
 
   const form = useForm({
     initialValues: {
-      catalogKey: 'default',
+      industryKey: 'default',
       slaryFrom: '',
       slaryTo: '',
     },
@@ -42,9 +42,9 @@ export default function Form({ onFormSubmit }: IFormProps) {
     cataloguesService()
       .then((data) => {
         if (typeof data !== 'string') {
-          setCatalogues(data);
+          setCatalog(data);
         } else {
-          setCatalogues(null);
+          setCatalog(null);
         }
         setIsLoadingCatalog(false);
       })
@@ -70,14 +70,14 @@ export default function Form({ onFormSubmit }: IFormProps) {
           data-elem="industry-select"
           component="select"
           rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
-          {...form.getInputProps('catalogKey')}
+          {...form.getInputProps('industryKey')}
         >
-          <option className={styles.placeholder} key="default" value="default" disabled>
+          <option style={{ color: '#ACADB9' }} key="default" value="default" disabled>
             Выберите отрасль
           </option>
 
-          {catalogues
-            ? catalogues.map((item) => {
+          {catalog
+            ? catalog.map((item) => {
                 return (
                   <option key={item.key} value={item.key}>
                     {item.title_trimmed}
