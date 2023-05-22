@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import VacancyCard from '../VacancyCard/VacancyCard';
 import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
@@ -11,7 +12,6 @@ import { IVacancy } from '@/types/vacancies';
 import classes from './VacanciesFavorite.module.css';
 import cardClasses from '../VacancyCard/VacancyCard.module.css';
 import ButtonStandart from '../Buttons/Button/ButtonStandart';
-import Link from 'next/link';
 
 export default function VacanciesFavorite() {
   const [vacancies, setVacancies] = useState<IVacancy[]>([]);

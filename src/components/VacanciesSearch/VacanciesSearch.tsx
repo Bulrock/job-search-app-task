@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import Form from '@/components/Form/Form';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import VacancyCard from '../VacancyCard/VacancyCard';
 import VacanciesNavigation from '../Pagination/VacanciesNavigation';
 import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
+import iconNothing from '../../../public/iconNothing.svg';
 import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
 import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
@@ -93,6 +95,16 @@ export default function VacanciesSearch() {
     if (isLoading) {
       return <LoaderRequest />;
     } else {
+      if (vacancies?.length === 0) {
+        return (
+          <div className={classes.vacanciesAbsentWrapper}>
+            <Image width={240} src={iconNothing} alt="no vacancies" priority />
+            <span className={classes.absentTitle}>
+              Такая вакансия не найдена, попробуйте другой запрос!
+            </span>
+          </div>
+        );
+      }
       return vacancies?.map((vacancy) => (
         <VacancyCard
           key={vacancy.id}
