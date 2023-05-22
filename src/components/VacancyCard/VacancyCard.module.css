@@ -8,7 +8,6 @@
   background: #FFFFFF;
   border: 1px solid #EAEBED;
   border-radius: 12px;
-  margin-top: -4px;
   padding: 24px;
   cursor: pointer;
 }
@@ -20,7 +19,7 @@
 .leftSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
 }
 
 .title {
