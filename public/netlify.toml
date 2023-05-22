@@ -1,0 +1,5 @@
+[[redirects]]
+from = “/vacancy/*”
+to = “/vacancy/[vacancyId].html”
+status = 200
+force = true
