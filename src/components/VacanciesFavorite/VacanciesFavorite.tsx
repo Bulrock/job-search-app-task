@@ -9,6 +9,7 @@ import vacancyFavoritesService from '@/services/vacanciesFavoritesService';
 import authService from '@/services/authService';
 import { IVacancy } from '@/types/vacancies';
 import classes from './VacanciesFavorite.module.css';
+import cardClasses from '../VacancyCard/VacancyCard.module.css';
 import ButtonStandart from '../Buttons/Button/ButtonStandart';
 import Link from 'next/link';
 
@@ -96,6 +97,7 @@ export default function VacanciesFavorite() {
               location={vacancy.town.title}
               id={vacancy.id}
               onFavoriteRemove={handleFavoriteRemove}
+              classes={cardClasses}
             />
           ))
         ) : (

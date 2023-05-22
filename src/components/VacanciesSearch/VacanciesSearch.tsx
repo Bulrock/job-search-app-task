@@ -9,6 +9,7 @@ import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
 import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
 import classes from './VacanciesSearch.module.css';
+import cardClasses from '../VacancyCard/VacancyCard.module.css';
 import { IVacancy } from '@/types/vacancies';
 import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 
@@ -100,6 +101,7 @@ export default function VacanciesSearch() {
           schedule={vacancy.type_of_work.title}
           location={vacancy.town.title}
           id={vacancy.id}
+          classes={cardClasses}
         />
       ));
     }
