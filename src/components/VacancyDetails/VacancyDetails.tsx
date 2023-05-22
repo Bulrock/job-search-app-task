@@ -10,12 +10,11 @@ import { IVacancy } from '@/types/vacancies';
 import classes from './VacancyDetails.module.css';
 import cardClasses from './VacancyCard.module.css';
 
-// interface IVacancyDetailsProps {
-//   vacancyId: number;
-// }
-// { vacancyId }: IVacancyDetailsProps
+interface IVacancyDetailsProps {
+  vacancyId: number;
+}
 
-export default function VacancyDetails() {
+export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
   const [vacancy, setVacancy] = useState<IVacancy | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +27,7 @@ export default function VacancyDetails() {
       authService().then(() => {
         setIsLoading(true);
         vacancyDetailsService({
-          id: id,
+          id: vacancyId || id,
         })
           .then((data) => {
             setIsLoading(false);
@@ -42,7 +41,7 @@ export default function VacancyDetails() {
     } else {
       setIsLoading(true);
       vacancyDetailsService({
-        id: id,
+        id: vacancyId || id,
       })
         .then((data) => {
           setIsLoading(false);
@@ -53,7 +52,7 @@ export default function VacancyDetails() {
           setVacancy(null);
         });
     }
-  }, []);
+  }, [vacancyId]);
 
   return (
     <div className={classes.mainWrapper}>
