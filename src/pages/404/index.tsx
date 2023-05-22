@@ -9,7 +9,7 @@ export default function Custom404Page() {
         <title>{'Job Search - Страница не найдена - 404'}</title>
         <meta name="description" content={'Job Search - Страница не найдена - 404'} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="./favicon.ico?" />
+        <link rel="icon" href="./favicon.ico" />
       </Head>
       <Custom404 />
     </>
