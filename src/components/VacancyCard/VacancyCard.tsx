@@ -45,7 +45,7 @@ export default function VacancyCard({
   };
 
   const handleCardClick = () => {
-    router.push(`/vacancy/${id}`);
+    router.push('/vacancy/[vacancyId]', `/vacancy/${id}`);
   };
 
   return (
