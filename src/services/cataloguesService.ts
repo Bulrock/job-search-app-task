@@ -1,10 +1,8 @@
 import { X_SECRET_KEY, CLIENT_SECRET } from '@/constants/authorization';
 import { ENDPOINT_CATALOGUES } from '@/constants/endpoints';
 import { ICataloguesResponse } from '@/types/responses';
-// import { CATALOG_MOCK } from '@/constants/catalogMock';
 
 export default async function cataloguesService(): Promise<ICataloguesResponse> {
-  // return CATALOG_MOCK;
   const response = await fetch(ENDPOINT_CATALOGUES, {
     method: 'POST',
     headers: {
@@ -20,7 +18,6 @@ export default async function cataloguesService(): Promise<ICataloguesResponse> 
   }
 
   const responseJSON = await response.json();
-  console.log(responseJSON);
 
   return responseJSON;
 }

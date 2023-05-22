@@ -2,8 +2,6 @@ import { X_SECRET_KEY, CLIENT_SECRET } from '@/constants/authorization';
 import { IVacancy } from '@/types/vacancies';
 
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
-// import { VACANCIES_MOCK } from '@/constants/vacanciesMock';
-// import { VACANCY_MOCK } from '@/constants/vacancyMock';
 
 interface IVacancyDetailsServiceProps {
   id: number;
@@ -12,8 +10,6 @@ interface IVacancyDetailsServiceProps {
 export default async function vacancyDetailsService({
   id,
 }: IVacancyDetailsServiceProps): Promise<IVacancy> {
-  // return VACANCIES_MOCK.find((elem) => elem.id === id) || VACANCY_MOCK;
-
   const response = await fetch(`${ENDPOINT_VACANCY}/${id}/`, {
     method: 'GET',
     headers: {
@@ -29,7 +25,6 @@ export default async function vacancyDetailsService({
   }
 
   const responseJSON = await response.json();
-  console.log(responseJSON);
 
   return responseJSON;
 }
