@@ -9,10 +9,19 @@
 
 .responseRequestWrapper {
   display: flex;
-  gap: 1rem;
+  gap: 20px;
   flex-direction: column;
   max-width: 773px;
 }
+
+.leftSection {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: #232134;
+}
+
 
 .content {
   height: fit-content;

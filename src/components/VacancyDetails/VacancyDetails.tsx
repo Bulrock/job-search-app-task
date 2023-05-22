@@ -8,6 +8,7 @@ import authService from '@/services/authService';
 import { VACANCY_DETAILS } from '@/constants/vacancyDetails';
 import { IVacancy } from '@/types/vacancies';
 import classes from './VacancyDetails.module.css';
+import cardClasses from './VacancyCard.module.css';
 
 export default function VacancyDetails() {
   const [vacancy, setVacancy] = useState<IVacancy | null>(null);
@@ -63,6 +64,7 @@ export default function VacancyDetails() {
               schedule={vacancy.type_of_work?.title}
               location={vacancy.town?.title}
               id={vacancy.id}
+              classes={cardClasses}
             />
             {vacancy.vacancyRichText ? (
               <div

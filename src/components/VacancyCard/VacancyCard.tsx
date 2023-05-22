@@ -4,7 +4,7 @@ import Image from 'next/image';
 import iconLocation from '../../../public/iconLocation.svg';
 import iconStar from '../../../public/iconStar.svg';
 import iconStarActive from '../../../public/iconStarActive.svg';
-import classes from './VacancyCard.module.css';
+import defaultClasses from './VacancyCard.module.css';
 import favouriteService from '@/services/favoriteService';
 import favoriteInitialService from '@/services/favoriteInitialService';
 import { useRouter } from 'next/router';
@@ -16,6 +16,7 @@ interface IVacancyCardProps {
   location: string;
   id: number;
   onFavoriteRemove?: () => void;
+  classes: { [key: string]: string | undefined };
 }
 
 export default function VacancyCard({
@@ -25,9 +26,11 @@ export default function VacancyCard({
   location,
   id,
   onFavoriteRemove,
+  classes,
 }: IVacancyCardProps) {
   const [active, setActive] = useState(false);
   const router = useRouter();
+  const computedClasses = classes ? classes : defaultClasses;
 
   useEffect(() => {
     setActive(favoriteInitialService(id));
@@ -46,17 +49,17 @@ export default function VacancyCard({
   };
 
   return (
-    <div onClick={handleCardClick} className={classes.cardWrapper}>
-      <div className={classes.leftSection}>
-        <span className={classes.title}>{title}</span>
-        <div className={classes.salaryScheduleWrapper}>
-          <span className={classes.salary}>{salary}</span>
-          <span className={classes.dot}>•</span>
-          <span className={classes.schedule}>{schedule}</span>
+    <div onClick={handleCardClick} className={computedClasses.cardWrapper}>
+      <div className={computedClasses.leftSection}>
+        <span className={computedClasses.title}>{title}</span>
+        <div className={computedClasses.salaryScheduleWrapper}>
+          <span className={computedClasses.salary}>{salary}</span>
+          <span className={computedClasses.dot}>•</span>
+          <span className={computedClasses.schedule}>{schedule}</span>
         </div>
-        <div className={classes.locationWrapper}>
+        <div className={computedClasses.locationWrapper}>
           <Image src={iconLocation} alt={'logo location'} />
-          <span className={classes.location}>{location}</span>
+          <span className={computedClasses.location}>{location}</span>
         </div>
       </div>
       <Image
