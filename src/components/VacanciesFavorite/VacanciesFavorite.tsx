@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import vacancyFavoritesService from '@/services/vacanciesFavoritesService';
 import authService from '@/services/authService';
+import { VACANCIES_FAVORITE_ERROR, VACANCIES_FAVORITE_ABSENT } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
 import VacancyCard from '../VacancyCard/VacancyCard';
 import ButtonStandart from '../Buttons/Button/ButtonStandart';
@@ -72,9 +73,7 @@ export default function VacanciesFavorite() {
     return (
       <div className={classes.mainWrapper}>
         <div className={classes.responseWrapper}>
-          <span className={classes.error}>
-            Упс, не удалось загрузить избранные вакансии! Попробуйте еще раз
-          </span>
+          <span className={classes.error}>{VACANCIES_FAVORITE_ERROR}</span>
         </div>
       </div>
     );
@@ -101,7 +100,7 @@ export default function VacanciesFavorite() {
         ) : (
           <div className={classes.vacanciesAbsentWrapper}>
             <Image width={240} src={iconNothing} alt="no vacancies" priority />
-            <span className={classes.absentTitle}>Упс, здесь еще ничего нет!</span>
+            <span className={classes.absentTitle}>{VACANCIES_FAVORITE_ABSENT}</span>
             <Link legacyBehavior href="/">
               <a>
                 <ButtonStandart

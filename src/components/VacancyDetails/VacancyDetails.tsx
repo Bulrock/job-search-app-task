@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 
 import vacancyDetailsService from '@/services/vacancyDetailsService';
 import authService from '@/services/authService';
+import { VACANCY_DETAILS_ERROR, VACANCY_ERROR } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
 import VacancyCard from '../VacancyCard/VacancyCard';
 import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
@@ -74,15 +75,11 @@ export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(vacancy.vacancyRichText) }}
               ></div>
             ) : (
-              <span className={classes.error}>
-                Упс, не удалось загрузить описание вакансии! Попробуйте снова
-              </span>
+              <span className={classes.error}>{VACANCY_DETAILS_ERROR}</span>
             )}
           </>
         ) : (
-          <span className={classes.error}>
-            Упс, не удалось загрузить вакансию! Попробуйте снова
-          </span>
+          <span className={classes.error}>{VACANCY_ERROR}</span>
         )}
       </div>
     </div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
 import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
+import { VACANCIES_SEARCH_ERROR, VACANCIES_SEARCH_ABSENT } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
 import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 import Form from '@/components/Form/Form';
@@ -87,9 +88,7 @@ export default function VacanciesSearch() {
 
   const renderVacancies = () => {
     if (error) {
-      return (
-        <span className={classes.error}>Упс, не удалось загрузить вакансии! Попробуйте снова</span>
-      );
+      return <span className={classes.error}>{VACANCIES_SEARCH_ERROR}</span>;
     }
 
     if (isLoading) {
@@ -99,10 +98,7 @@ export default function VacanciesSearch() {
         return (
           <div className={classes.vacanciesAbsentWrapper}>
             <Image width={240} src={iconNothing} alt="no vacancies" priority />
-            <span className={classes.absentTitle}>
-              Такой страницы или вакансий с заданными критериями не найдено, попробуйте другой
-              запрос!
-            </span>
+            <span className={classes.absentTitle}>{VACANCIES_SEARCH_ABSENT}</span>
           </div>
         );
       }
