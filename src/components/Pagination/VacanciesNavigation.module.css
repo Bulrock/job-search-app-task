@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.navigationWrapper div {
+  justify-content: center;
+}
+
 .navigationWrapper button[data-active]:not([data-disabled]) {
   background-color: #5E96FC;
 }

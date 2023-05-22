@@ -79,7 +79,7 @@
   color: #343A40;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 840px) {
   .mainWrapper {
     padding: 20px 10px 20px 10px;
   }

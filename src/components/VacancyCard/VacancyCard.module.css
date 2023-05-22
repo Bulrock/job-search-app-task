@@ -2,7 +2,7 @@
   display: flex;
   gap: 1rem;
   max-width: 773px;
-  height: 137px;
+  min-height: 137px;
   align-items: flex-start;
   justify-content: space-between;
   background: #FFFFFF;
