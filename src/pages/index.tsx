@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from '@/components/Header/Header';
+
 import VacanciesSearch from '@/components/VacanciesSearch/VacanciesSearch';
 
 export default function VacancySearchPage() {

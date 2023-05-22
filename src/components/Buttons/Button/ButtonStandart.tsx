@@ -6,6 +6,7 @@ interface IButtonProps {
   text: string;
   height: number;
   width: number;
+  setDataElem: boolean;
 }
 
 export default function ButtonStandart({
@@ -13,11 +14,12 @@ export default function ButtonStandart({
   width,
   color,
   text,
+  setDataElem,
   option = 'filled',
 }: IButtonProps) {
   return (
     <Button
-      data-elem="search-button"
+      data-elem={setDataElem ? 'search-button' : ''}
       h={height}
       w={width}
       radius={8}

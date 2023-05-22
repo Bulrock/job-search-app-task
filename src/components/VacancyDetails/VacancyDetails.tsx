@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import DOMPurify from 'dompurify';
 
-import VacancyCard from '../VacancyCard/VacancyCard';
-import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import vacancyDetailsService from '@/services/vacancyDetailsService';
 import authService from '@/services/authService';
-import { VACANCY_DETAILS } from '@/constants/vacancyDetails';
 import { IVacancy } from '@/types/vacancies';
+import VacancyCard from '../VacancyCard/VacancyCard';
+import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import classes from './VacancyDetails.module.css';
 import cardClasses from './VacancyCard.module.css';
 
@@ -75,10 +74,9 @@ export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(vacancy.vacancyRichText) }}
               ></div>
             ) : (
-              <div
-                className={classes.content}
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(VACANCY_DETAILS) }}
-              ></div>
+              <span className={classes.error}>
+                Упс, не удалось загрузить описание вакансии! Попробуйте снова
+              </span>
             )}
           </>
         ) : (

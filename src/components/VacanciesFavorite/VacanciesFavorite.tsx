@@ -2,16 +2,16 @@ import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import VacancyCard from '../VacancyCard/VacancyCard';
-import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
-import VacanciesNavigation from '../Pagination/VacanciesNavigation';
-import iconNothing from '../../../public/iconNothing.svg';
 import vacancyFavoritesService from '@/services/vacanciesFavoritesService';
 import authService from '@/services/authService';
 import { IVacancy } from '@/types/vacancies';
+import VacancyCard from '../VacancyCard/VacancyCard';
+import ButtonStandart from '../Buttons/Button/ButtonStandart';
+import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
+import VacanciesNavigation from '../Pagination/VacanciesNavigation';
+import iconNothing from '../../../public/iconNothing.svg';
 import classes from './VacanciesFavorite.module.css';
 import cardClasses from '../VacancyCard/VacancyCard.module.css';
-import ButtonStandart from '../Buttons/Button/ButtonStandart';
 
 export default function VacanciesFavorite() {
   const [vacancies, setVacancies] = useState<IVacancy[]>([]);
@@ -110,6 +110,7 @@ export default function VacanciesFavorite() {
                   color={'#3B7CD3'}
                   text="Поиск Вакансий"
                   option="light"
+                  setDataElem={false}
                 />
               </a>
             </Link>

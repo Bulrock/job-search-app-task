@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 
+import favouriteService from '@/services/favoriteService';
+import favoriteInitialService from '@/services/favoriteInitialService';
 import iconLocation from '../../../public/iconLocation.svg';
 import iconStar from '../../../public/iconStar.svg';
 import iconStarActive from '../../../public/iconStarActive.svg';
 import defaultClasses from './VacancyCard.module.css';
-import favouriteService from '@/services/favoriteService';
-import favoriteInitialService from '@/services/favoriteInitialService';
-import { useRouter } from 'next/router';
 
 interface IVacancyCardProps {
   title: string;

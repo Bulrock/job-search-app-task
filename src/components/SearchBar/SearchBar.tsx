@@ -29,7 +29,13 @@ export default function SearchBar({ onSearchSubmit }: ISearchBarProps) {
           {...form.getInputProps('keyword')}
         />
         <div className={classes.button}>
-          <ButtonStandart height={32} width={83} color={COLOR_BLUE_MAIN} text="Поиск" />
+          <ButtonStandart
+            height={32}
+            width={83}
+            color={COLOR_BLUE_MAIN}
+            text="Поиск"
+            setDataElem={true}
+          />
         </div>
       </div>
     </form>

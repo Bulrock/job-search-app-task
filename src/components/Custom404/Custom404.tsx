@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import classes from './Custom404.module.css';
+
 import ButtonStandart from '../Buttons/Button/ButtonStandart';
+import classes from './Custom404.module.css';
 
 export default function Custom404() {
   return (
@@ -14,9 +15,10 @@ export default function Custom404() {
           <ButtonStandart
             height={42}
             width={250}
-            color={'#3B7CD3'}
+            color={''}
             text="Вернуться к поиску вакансий"
             option="default"
+            setDataElem={false}
           />
         </a>
       </Link>

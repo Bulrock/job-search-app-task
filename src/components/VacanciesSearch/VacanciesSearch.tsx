@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+import vacanciesService from '@/services/vacanciesService';
+import authService from '@/services/authService';
+import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
+import { IVacancy } from '@/types/vacancies';
+import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 import Form from '@/components/Form/Form';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import VacancyCard from '../VacancyCard/VacancyCard';
 import VacanciesNavigation from '../Pagination/VacanciesNavigation';
 import { LoaderRequest } from '../LoaderRequest/LoaderRequest';
 import iconNothing from '../../../public/iconNothing.svg';
-import vacanciesService from '@/services/vacanciesService';
-import authService from '@/services/authService';
-import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
 import classes from './VacanciesSearch.module.css';
 import cardClasses from '../VacancyCard/VacancyCard.module.css';
-import { IVacancy } from '@/types/vacancies';
-import { IFormQuery, ISearchQuery } from '@/types/formQuery';
 
 export default function VacanciesSearch() {
   const [page, setPage] = useState(1);
