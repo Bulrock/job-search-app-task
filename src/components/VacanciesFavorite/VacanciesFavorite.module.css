@@ -12,7 +12,11 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  max-width: 773px;
+  width: 773px;
+}
+
+.responseWrapper button {
+  margin-top: 64px;
 }
 
 .content {
