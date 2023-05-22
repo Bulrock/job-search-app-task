@@ -16,7 +16,7 @@ interface IVacancyDetailsProps {
 
 export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
   const [vacancy, setVacancy] = useState<IVacancy | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -25,7 +25,6 @@ export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
       authService().then(() => {
-        setIsLoading(true);
         vacancyDetailsService({
           id: vacancyId || id,
         })

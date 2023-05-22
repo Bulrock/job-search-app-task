@@ -15,7 +15,7 @@ import Link from 'next/link';
 
 export default function VacanciesFavorite() {
   const [vacancies, setVacancies] = useState<IVacancy[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [favoriteIds, setFavoriteIds] = useState([]);
@@ -31,7 +31,6 @@ export default function VacanciesFavorite() {
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
       authService().then(() => {
-        setIsLoading(true);
         vacancyFavoritesService(page)
           .then((data) => {
             setIsLoading(false);
@@ -44,7 +43,6 @@ export default function VacanciesFavorite() {
           });
       });
     } else {
-      setIsLoading(true);
       vacancyFavoritesService(page)
         .then((data) => {
           setIsLoading(false);
