@@ -1,8 +1,11 @@
 import Head from 'next/head';
+// import { useRouter } from 'next/router';
 import Header from '@/components/Header/Header';
 import VacancyDetails from '@/components/VacancyDetails/VacancyDetails';
 
 export default function VacancyPage() {
+  // const router = useRouter();
+
   return (
     <>
       <Head>
@@ -16,3 +19,5 @@ export default function VacancyPage() {
     </>
   );
 }
+
+// vacancyId={Number(router.query.vacancyId)}

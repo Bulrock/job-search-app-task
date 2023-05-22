@@ -10,6 +10,11 @@ import { IVacancy } from '@/types/vacancies';
 import classes from './VacancyDetails.module.css';
 import cardClasses from './VacancyCard.module.css';
 
+// interface IVacancyDetailsProps {
+//   vacancyId: number;
+// }
+// { vacancyId }: IVacancyDetailsProps
+
 export default function VacancyDetails() {
   const [vacancy, setVacancy] = useState<IVacancy | null>(null);
   const [isLoading, setIsLoading] = useState(false);
