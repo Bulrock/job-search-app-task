@@ -1,8 +1,8 @@
-import { createStyles } from '@mantine/core';
+import { MantineTheme, createStyles } from '@mantine/core';
 
-import { COLOR_GRAY } from '@/constants/colors';
+import { COLOR_GRAY, COLOR_BLACK } from '@/constants/colors';
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme: MantineTheme, isSelected: boolean) => ({
   rightSection: {
     right: '5px',
   },
@@ -11,6 +11,7 @@ export const useStyles = createStyles(() => ({
     borderRadius: '0.5rem',
     height: '2.625rem',
     letterSpacing: '0.03rem',
+    color: `${isSelected ? COLOR_BLACK : COLOR_GRAY}`,
   },
   controlUp: {
     borderLeft: 'none',

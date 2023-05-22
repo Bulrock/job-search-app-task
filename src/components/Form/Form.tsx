@@ -20,7 +20,6 @@ interface IFormProps {
 }
 
 export default function Form({ onFormSubmit }: IFormProps) {
-  const { classes } = useStyles();
   const [catalog, setCatalog] = useState<ICataloguesResponse | null>(null);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
   const [error, setError] = useState(false);
@@ -32,6 +31,8 @@ export default function Form({ onFormSubmit }: IFormProps) {
       slaryTo: '',
     },
   });
+
+  const { classes } = useStyles(form.values.industryKey !== 'default');
 
   function onFormReset() {
     form.reset();
@@ -72,14 +73,14 @@ export default function Form({ onFormSubmit }: IFormProps) {
           rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
           {...form.getInputProps('industryKey')}
         >
-          <option style={{ color: '#ACADB9' }} key="default" value="default" disabled>
+          <option key="default" value="default" disabled>
             Выберите отрасль
           </option>
 
           {catalog
             ? catalog.map((item) => {
                 return (
-                  <option key={item.key} value={item.key}>
+                  <option className={styles.option} key={item.key} value={item.key}>
                     {item.title_trimmed}
                   </option>
                 );

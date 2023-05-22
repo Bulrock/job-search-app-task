@@ -100,7 +100,8 @@ export default function VacanciesSearch() {
           <div className={classes.vacanciesAbsentWrapper}>
             <Image width={240} src={iconNothing} alt="no vacancies" priority />
             <span className={classes.absentTitle}>
-              Такая вакансия не найдена, попробуйте другой запрос!
+              Такой страницы или вакансий с заданными критериями не найдено, попробуйте другой
+              запрос!
             </span>
           </div>
         );
