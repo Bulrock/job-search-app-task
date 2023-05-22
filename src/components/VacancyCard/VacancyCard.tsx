@@ -49,7 +49,11 @@ export default function VacancyCard({
   };
 
   return (
-    <div onClick={handleCardClick} className={computedClasses.cardWrapper}>
+    <div
+      onClick={handleCardClick}
+      className={computedClasses.cardWrapper}
+      data-elem={`vacancy-${id}`}
+    >
       <div className={computedClasses.leftSection}>
         <span className={computedClasses.title}>{title}</span>
         <div className={computedClasses.salaryScheduleWrapper}>
@@ -64,6 +68,7 @@ export default function VacancyCard({
       </div>
       <Image
         onClick={handleFavoriteClick}
+        data-elem={`vacancy-${id}-shortlist-button`}
         src={active ? iconStarActive : iconStar}
         alt={'logo star'}
       />
