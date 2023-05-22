@@ -1,6 +1,6 @@
 .mainWrapper {
   display: flex;
-  height: calc(100vh - 84px);
+  min-height: calc(100vh - 84px);
   justify-content: center;
   gap: 28px;
   width: 100vw;

@@ -3,7 +3,7 @@ import { IVacancy } from '@/types/vacancies';
 
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
 import { PUBLISHED, PER_PAGE } from '@/constants/queryParameters';
-import { VACANCIES_MOCK } from '@/constants/vacanciesMock';
+// import { VACANCIES_MOCK } from '@/constants/vacanciesMock';
 
 interface IVacanciesServiceProps {
   page: number;
@@ -20,7 +20,7 @@ export default async function vacanciesService({
   catalogues,
   keyword,
 }: IVacanciesServiceProps): Promise<IVacancy[]> {
-  return VACANCIES_MOCK;
+  // return VACANCIES_MOCK;
 
   const encodedURI = keyword ? encodeURIComponent(keyword) : '';
   const pageIndex = page - 1;
