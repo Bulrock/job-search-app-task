@@ -1,6 +1,7 @@
 .navigationWrapper {
   align-self: center;
   margin-top: 24px;
+  justify-content: center;
 }
 
 .navigationWrapper button[data-active]:not([data-disabled]) {
