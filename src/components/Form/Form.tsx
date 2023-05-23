@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form';
 import Image from 'next/image';
 
 import cataloguesService from '@/services/cataloguesService';
-import { useStyles } from '@/constants/formStyles';
+import { useCatalogStyles, useInputsStyles } from '@/constants/formStyles';
 import { STYLE_FORM_BUTTON } from '@/constants/styles';
 import { FORM_ERROR } from '@/constants/text';
 import {
@@ -50,7 +50,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
     },
   });
 
-  const { classes } = useStyles(form.values.industryKey !== 'default');
+  const catalogClasses = useCatalogStyles(form.values.industryKey !== 'default').classes;
 
   function onFormReset() {
     form.reset();
@@ -83,7 +83,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
     } else {
       return (
         <Input
-          classNames={classes}
+          classNames={catalogClasses}
           data-elem="industry-select"
           component="select"
           rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
@@ -107,6 +107,8 @@ export default function Form({ onFormSubmit }: IFormProps) {
     }
   };
 
+  const inputClasses = useInputsStyles().classes;
+
   return (
     <Box className={styles.form} maw={315}>
       <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
@@ -125,7 +127,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
           <Stack spacing={8}>
             <span className={styles.numberInputTitle}>Оклад</span>
             <NumberInput
-              classNames={classes}
+              classNames={inputClasses}
               data-elem="salary-from-input"
               min={0}
               step={5000}
@@ -133,7 +135,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
               {...form.getInputProps('slaryFrom')}
             />
             <NumberInput
-              classNames={classes}
+              classNames={inputClasses}
               data-elem="salary-to-input"
               min={0}
               step={5000}
