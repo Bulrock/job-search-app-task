@@ -11,7 +11,11 @@ export default function Header() {
   return (
     <header className={classes.headerWrapper}>
       <Link legacyBehavior href="/">
-        <Image src={logo} alt="logo" />
+        <Image
+          className={router.pathname == '/' ? classes.logoActive : classes.logoNotActive}
+          src={logo}
+          alt="logo"
+        />
       </Link>
       <div className={classes.header}>
         <div className={classes.links}>
