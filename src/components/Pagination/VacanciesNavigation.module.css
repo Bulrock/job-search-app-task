@@ -1,0 +1,19 @@
+.navigationWrapper {
+  align-self: center;
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.navigationWrapper div {
+  justify-content: center;
+}
+
+.navigationWrapper button[data-active]:not([data-disabled]) {
+  background-color: #5E96FC;
+}
+
+@media screen and (max-width: 840px) {
+  .navigationWrapper {
+    margin-top: 0;
+  }
+}

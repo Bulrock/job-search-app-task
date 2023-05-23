@@ -1,0 +1,87 @@
+.numberInputTitle {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  padding-bottom: 2px;
+}
+
+.placeholder {
+  color: #ACADB9;
+}
+
+.form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  background-color: #FFFFFF;
+  min-width: 315px;
+  height: 360px;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+}
+
+.option {
+  color: #232134;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.7rem;
+}
+
+.formTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.formResetWrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  color: #ACADB9;
+}
+
+.formResetWrapper:hover {
+  transform: scale(1.03);
+  color: #5E96FC;
+}
+
+.formReset {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper option .placeholder {
+  color: #ACADB9;
+}
+
+.error {
+  font-weight: 500;
+  font-size: 16px;
+  color: red;
+  line-height: 20px;
+  text-align: left;
+}
+
+@media screen and (max-width: 1200px) {
+  .form {
+    min-width: 48rem;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .form {
+    min-width: calc(100vw - 40px);
+  }
+}

@@ -1,0 +1,120 @@
+.cardWrapper {
+  display: flex;
+  gap: 1rem;
+  max-width: 773px;
+  height: 157px;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+}
+
+.cardWrapper img {
+  cursor: pointer;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16.5px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: #232134;
+  width: 650px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: -5px;
+}
+
+.salaryScheduleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.salary {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.schedule {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #232134;
+}
+
+.locationWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.locationWrapper img {
+  cursor: default;
+}
+
+.location {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #232134;
+}
+
+@media screen and (max-width: 840px) {
+  .cardWrapper {
+    max-width: calc(100vw - 40px);
+  }
+
+  .salaryScheduleWrapper {
+    flex-wrap: wrap;
+  }
+
+  .title {
+   width: 100%;
+  }
+
+  .leftSection {
+    max-width: calc(100% - 50px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardWrapper {
+    height: fit-content;
+    min-height: 137px;
+    padding: 15px;
+  }
+
+  .leftSection {
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 25px;
+    height: fit-content;
+    white-space: pre-wrap;
+  }
+
+  .salary {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  
+  .schedule {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
