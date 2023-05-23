@@ -16,7 +16,7 @@ export default function VacanciesNavigation({
 }: IVacanciesNavigationProps) {
   return (
     <div className={classes.navigationWrapper}>
-      <Pagination value={page} onChange={onPageChange} total={total} />
+      <Pagination value={page} onChange={onPageChange} total={total <= 125 ? total : 125} />
     </div>
   );
 }
