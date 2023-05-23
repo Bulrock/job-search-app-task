@@ -24,12 +24,16 @@
   left: 0;
 }
 
-.headerWrapper img {
+.headerWrapper .logoActive {
+  cursor: default;
+}
+
+.headerWrapper .logoNotActive {
   cursor: pointer;
   transition: all .3s ease-in-out;
 }
 
-.headerWrapper img:hover {
+.headerWrapper .logoNotActive:hover {
   transform: scale(1.05);
 }
 
@@ -46,14 +50,10 @@
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  transition: all .5s ease-out;
-}
-
-.links a:hover {
-  transform: scale(1.05);
 }
 
 .active {
+  cursor: default;
   color: #5E96FC;
   letter-spacing: 0.5px;
 }
@@ -61,6 +61,12 @@
 .notactive {
   color: #232134;
   letter-spacing: 0.8px;
+  transition: all .5s ease-out;
+}
+
+.notactive:hover {
+  color: #5E96FC;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 1200px) {
