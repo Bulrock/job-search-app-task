@@ -7,6 +7,10 @@ import cataloguesService from '@/services/cataloguesService';
 import { useStyles } from '@/constants/formStyles';
 import { STYLE_FORM_BUTTON } from '@/constants/styles';
 import { FORM_ERROR } from '@/constants/text';
+import {
+  INPUT_FROM_VALIDATION_MESSAGE,
+  INPUT_TO_VALIDATION_MESSAGE,
+} from '@/constants/formValidation';
 import { ICataloguesResponse } from '@/types/responses';
 import { IFormQuery } from '@/types/formQuery';
 import { ButtonVariant } from '@/types/buttons';
@@ -41,8 +45,8 @@ export default function Form({ onFormSubmit }: IFormProps) {
       slaryTo: '',
     },
     validate: {
-      slaryFrom: () => (!compareSalary() ? 'Значение "От" должно быть меньше значения "До"' : null),
-      slaryTo: () => (compareSalary() ? null : 'Значение "До" должно быть больше значения "От"'),
+      slaryFrom: () => (!compareSalary() ? INPUT_FROM_VALIDATION_MESSAGE : null),
+      slaryTo: () => (compareSalary() ? null : INPUT_TO_VALIDATION_MESSAGE),
     },
   });
 
