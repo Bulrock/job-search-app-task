@@ -95,7 +95,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
       <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
         <div className={styles.formHeader}>
           <span className={styles.formTitle}>Фильтры</span>
-          <div onClick={onFormReset} className={styles.formResetWrapper}>
+          <div onClick={onFormReset} className={styles.formResetWrapper} tabIndex={1}>
             <span className={styles.formReset}>Сбросить все</span>
             <Image width={16} height={16} src={iconCloseForm} alt="icon close" />
           </div>
