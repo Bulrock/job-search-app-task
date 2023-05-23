@@ -16,7 +16,8 @@
   gap: 27px;
   background-color: #FFFFFF;
   min-width: 315px;
-  height: 360px;
+  min-height: 360px;
+  height: fit-content;
   background: #FFFFFF;
   border: 1px solid #EAEBED;
   border-radius: 12px;

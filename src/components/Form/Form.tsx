@@ -25,11 +25,24 @@ export default function Form({ onFormSubmit }: IFormProps) {
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
   const [error, setError] = useState(false);
 
+  const compareSalary = () => {
+    const { slaryFrom, slaryTo } = form.values;
+    if (slaryFrom >= slaryTo) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const form = useForm({
     initialValues: {
       industryKey: 'default',
       slaryFrom: '',
       slaryTo: '',
+    },
+    validate: {
+      slaryFrom: () => (!compareSalary() ? 'Значение "От" должно быть меньше значения "До"' : null),
+      slaryTo: () => (compareSalary() ? null : 'Значение "До" должно быть больше значения "От"'),
     },
   });
 
