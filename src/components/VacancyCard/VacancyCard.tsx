@@ -8,6 +8,7 @@ import iconLocation from '../../../public/iconLocation.svg';
 import iconStar from '../../../public/iconStar.svg';
 import iconStarActive from '../../../public/iconStarActive.svg';
 import defaultClasses from './VacancyCard.module.css';
+import Link from 'next/link';
 
 interface IVacancyCardProps {
   title: string;
@@ -55,7 +56,9 @@ export default function VacancyCard({
       data-elem={`vacancy-${id}`}
     >
       <div className={computedClasses.leftSection}>
-        <span className={computedClasses.title}>{title}</span>
+        <Link href={`/vacancy/${id}`}>
+          <span className={computedClasses.title}>{title}</span>
+        </Link>
         <div className={computedClasses.salaryScheduleWrapper}>
           <span className={computedClasses.salary}>{salary}</span>
           <span className={computedClasses.dot}>•</span>
