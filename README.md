@@ -32,6 +32,7 @@ npm run build
 - [x] React.js v18 is a JavaScript library for building UI that allows to create encapsulated components that manage their own state  
 - [x] React router DOM v6 is a library that allows to use routes in your projects to render multiple pages with SPA. 
 - [x] Typescript is a strict syntactical superset of JavaScript that adds optional static typing to the language.  
-- [x] HTML5
-- [x] CSS3
+- [x] Mantine is a React components library focused on providing great user and developer experience. 
+- [x] HTML5  
+- [x] CSS3  
 - [x] Git - distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
