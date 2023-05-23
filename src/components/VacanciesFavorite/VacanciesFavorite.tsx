@@ -117,7 +117,7 @@ export default function VacanciesFavorite() {
             </Link>
           </div>
         )}
-        {vacancies ? (
+        {vacancies && !isLoading ? (
           <VacanciesNavigation total={pagesAmount} onPageChange={setPage} page={page} />
         ) : (
           ''
