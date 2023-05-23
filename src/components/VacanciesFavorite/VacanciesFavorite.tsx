@@ -31,6 +31,7 @@ export default function VacanciesFavorite() {
     const expirationDate = localStorage.getItem('ttl');
 
     if (!token || Date.now() / 1000 >= Number(expirationDate)) {
+      setIsLoading(true);
       authService().then(() => {
         vacancyFavoritesService(page)
           .then((data) => {
@@ -44,6 +45,7 @@ export default function VacanciesFavorite() {
           });
       });
     } else {
+      setIsLoading(true);
       vacancyFavoritesService(page)
         .then((data) => {
           setIsLoading(false);
@@ -115,7 +117,7 @@ export default function VacanciesFavorite() {
             </Link>
           </div>
         )}
-        {vacancies ? (
+        {vacancies && !isLoading ? (
           <VacanciesNavigation total={pagesAmount} onPageChange={setPage} page={page} />
         ) : (
           ''

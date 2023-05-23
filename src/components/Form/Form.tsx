@@ -4,9 +4,13 @@ import { useForm } from '@mantine/form';
 import Image from 'next/image';
 
 import cataloguesService from '@/services/cataloguesService';
-import { useStyles } from '@/constants/formStyles';
+import { useCatalogStyles, useInputsStyles } from '@/constants/formStyles';
 import { STYLE_FORM_BUTTON } from '@/constants/styles';
 import { FORM_ERROR } from '@/constants/text';
+import {
+  INPUT_FROM_VALIDATION_MESSAGE,
+  INPUT_TO_VALIDATION_MESSAGE,
+} from '@/constants/formValidation';
 import { ICataloguesResponse } from '@/types/responses';
 import { IFormQuery } from '@/types/formQuery';
 import { ButtonVariant } from '@/types/buttons';
@@ -25,15 +29,28 @@ export default function Form({ onFormSubmit }: IFormProps) {
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
   const [error, setError] = useState(false);
 
+  const compareSalary = () => {
+    const { slaryFrom, slaryTo } = form.values;
+    if (slaryFrom >= slaryTo) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const form = useForm({
     initialValues: {
       industryKey: 'default',
       slaryFrom: '',
       slaryTo: '',
     },
+    validate: {
+      slaryFrom: () => (!compareSalary() ? INPUT_FROM_VALIDATION_MESSAGE : null),
+      slaryTo: () => (compareSalary() ? null : INPUT_TO_VALIDATION_MESSAGE),
+    },
   });
 
-  const { classes } = useStyles(form.values.industryKey !== 'default');
+  const catalogClasses = useCatalogStyles(form.values.industryKey !== 'default').classes;
 
   function onFormReset() {
     form.reset();
@@ -66,7 +83,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
     } else {
       return (
         <Input
-          classNames={classes}
+          classNames={catalogClasses}
           data-elem="industry-select"
           component="select"
           rightSection={<Image src={iconChevronDown} alt="icon chevron" />}
@@ -90,12 +107,14 @@ export default function Form({ onFormSubmit }: IFormProps) {
     }
   };
 
+  const inputClasses = useInputsStyles().classes;
+
   return (
     <Box className={styles.form} maw={315}>
       <form onSubmit={form.onSubmit((values) => onFormSubmit(values))}>
         <div className={styles.formHeader}>
           <span className={styles.formTitle}>Фильтры</span>
-          <div onClick={onFormReset} className={styles.formResetWrapper}>
+          <div onClick={onFormReset} className={styles.formResetWrapper} tabIndex={0}>
             <span className={styles.formReset}>Сбросить все</span>
             <Image width={16} height={16} src={iconCloseForm} alt="icon close" />
           </div>
@@ -108,7 +127,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
           <Stack spacing={8}>
             <span className={styles.numberInputTitle}>Оклад</span>
             <NumberInput
-              classNames={classes}
+              classNames={inputClasses}
               data-elem="salary-from-input"
               min={0}
               step={5000}
@@ -116,7 +135,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
               {...form.getInputProps('slaryFrom')}
             />
             <NumberInput
-              classNames={classes}
+              classNames={inputClasses}
               data-elem="salary-to-input"
               min={0}
               step={5000}

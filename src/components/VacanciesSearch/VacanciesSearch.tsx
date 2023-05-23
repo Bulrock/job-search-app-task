@@ -122,7 +122,7 @@ export default function VacanciesSearch() {
       <div className={classes.responseRequestWrapper}>
         <SearchBar onSearchSubmit={handleSearchSubmit} />
         {renderVacancies()}
-        <VacanciesNavigation page={page} onPageChange={setPage} total={total} />
+        {!isLoading && <VacanciesNavigation page={page} onPageChange={setPage} total={total} />}
       </div>
     </div>
   );
