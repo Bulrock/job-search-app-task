@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import vacanciesService from '@/services/vacanciesService';
 import authService from '@/services/authService';
+import { stringifySalary } from '@/services/stringifySalary';
 import { INITIAL_FORM_QUERY, INITIAL_SEARCH_QUERY } from '@/constants/initialFormQuery';
 import { VACANCIES_SEARCH_ERROR, VACANCIES_SEARCH_ABSENT } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
@@ -85,24 +86,6 @@ export default function VacanciesSearch() {
         });
     }
   }, [formQuery, page, searchQuery]);
-
-  const stringifySalary = (salaryFrom: number, salaryTo: number, currency: string) => {
-    if (salaryFrom === 0 && salaryTo === 0) {
-      return 'з/п по договоренности';
-    }
-    if (salaryFrom === salaryTo) {
-      return `з/п ${salaryFrom} ${currency}`;
-    }
-    if (salaryFrom !== 0 && salaryTo === 0) {
-      return `з/п от ${salaryFrom} ${currency}`;
-    }
-    if (salaryFrom === 0 && salaryTo !== 0) {
-      return `з/п до ${salaryTo} ${currency}`;
-    }
-    if (salaryFrom !== 0 && salaryTo !== 0) {
-      return `з/п ${salaryFrom} - ${salaryTo} ${currency}`;
-    }
-  };
 
   const renderVacancies = () => {
     if (error) {

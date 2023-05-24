@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import vacancyFavoritesService from '@/services/vacanciesFavoritesService';
 import authService from '@/services/authService';
+import { stringifySalary } from '@/services/stringifySalary';
 import { VACANCIES_FAVORITE_ERROR, VACANCIES_FAVORITE_ABSENT } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
 import VacancyCard from '../VacancyCard/VacancyCard';
@@ -91,7 +92,11 @@ export default function VacanciesFavorite() {
             <VacancyCard
               key={vacancy.id}
               title={vacancy.profession}
-              salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
+              salary={
+                vacancy
+                  ? stringifySalary(vacancy.payment_from, vacancy.payment_to, vacancy.currency)
+                  : 'Не указано'
+              }
               schedule={vacancy.type_of_work.title}
               location={vacancy.town.title}
               id={vacancy.id}
