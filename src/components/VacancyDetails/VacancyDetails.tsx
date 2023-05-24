@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 
 import vacancyDetailsService from '@/services/vacancyDetailsService';
 import authService from '@/services/authService';
+import { stringifySalary } from '@/services/stringifySalary';
 import { VACANCY_DETAILS_ERROR, VACANCY_ERROR } from '@/constants/text';
 import { IVacancy } from '@/types/vacancies';
 import VacancyCard from '../VacancyCard/VacancyCard';
@@ -63,7 +64,7 @@ export default function VacancyDetails({ vacancyId }: IVacancyDetailsProps) {
             <VacancyCard
               key={vacancy.id}
               title={vacancy.profession}
-              salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
+              salary={stringifySalary(vacancy.payment_from, vacancy.payment_to, vacancy.currency)}
               schedule={vacancy.type_of_work?.title}
               location={vacancy.town?.title}
               id={vacancy.id}
