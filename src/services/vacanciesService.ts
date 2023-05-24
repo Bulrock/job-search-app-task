@@ -2,7 +2,7 @@ import { X_SECRET_KEY, CLIENT_SECRET } from '@/constants/authorization';
 import { IVacancy } from '@/types/vacancies';
 
 import { ENDPOINT_VACANCY } from '@/constants/endpoints';
-import { PUBLISHED, PER_PAGE } from '@/constants/queryParameters';
+import { PUBLISHED, PER_PAGE, AGREEMENT } from '@/constants/queryParameters';
 
 interface IVacanciesServiceProps {
   page: number;
@@ -21,7 +21,7 @@ export default async function vacanciesService({
 }: IVacanciesServiceProps): Promise<IVacancy[]> {
   const encodedURI = keyword ? encodeURIComponent(keyword) : '';
   const pageIndex = page - 1;
-  const endpoint = `${ENDPOINT_VACANCY}/?count=${PER_PAGE}&page=${pageIndex}&published=${PUBLISHED}${
+  const endpoint = `${ENDPOINT_VACANCY}/?count=${PER_PAGE}&page=${pageIndex}&published=${PUBLISHED}&no_agreement=${AGREEMENT}${
     encodedURI ? `&keyword=${encodedURI}` : ''
   }${payment_from ? `&payment_from=${payment_from}` : ''}${
     payment_to ? `&payment_to=${payment_to}` : ''

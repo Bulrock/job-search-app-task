@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 interface IVacancyCardProps {
   title: string;
-  salary: string;
+  salary: string | undefined;
   schedule: string;
   location: string;
   id: number;
@@ -60,7 +60,7 @@ export default function VacancyCard({
           <span className={computedClasses.title}>{title}</span>
         </Link>
         <div className={computedClasses.salaryScheduleWrapper}>
-          <span className={computedClasses.salary}>{salary}</span>
+          <span className={computedClasses.salary}>{salary ? salary : 'з/п не указана'}</span>
           <span className={computedClasses.dot}>•</span>
           <span className={computedClasses.schedule}>{schedule}</span>
         </div>

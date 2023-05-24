@@ -86,6 +86,24 @@ export default function VacanciesSearch() {
     }
   }, [formQuery, page, searchQuery]);
 
+  const stringifySalary = (salaryFrom: number, salaryTo: number, currency: string) => {
+    if (salaryFrom === 0 && salaryTo === 0) {
+      return 'з/п по договоренности';
+    }
+    if (salaryFrom === salaryTo) {
+      return `з/п ${salaryFrom} ${currency}`;
+    }
+    if (salaryFrom !== 0 && salaryTo === 0) {
+      return `з/п от ${salaryFrom} ${currency}`;
+    }
+    if (salaryFrom === 0 && salaryTo !== 0) {
+      return `з/п до ${salaryTo} ${currency}`;
+    }
+    if (salaryFrom !== 0 && salaryTo !== 0) {
+      return `з/п ${salaryFrom} - ${salaryTo} ${currency}`;
+    }
+  };
+
   const renderVacancies = () => {
     if (error) {
       return <span className={classes.error}>{VACANCIES_SEARCH_ERROR}</span>;
@@ -106,7 +124,11 @@ export default function VacanciesSearch() {
         <VacancyCard
           key={vacancy.id}
           title={vacancy.profession}
-          salary={`з/п от ${vacancy.payment_from} ${vacancy.currency}`}
+          salary={
+            vacancy
+              ? stringifySalary(vacancy.payment_from, vacancy.payment_to, vacancy.currency)
+              : 'Не указано'
+          }
           schedule={vacancy.type_of_work.title}
           location={vacancy.town.title}
           id={vacancy.id}
