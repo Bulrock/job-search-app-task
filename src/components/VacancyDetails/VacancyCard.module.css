@@ -2,7 +2,7 @@
   display: flex;
   gap: 1rem;
   max-width: 773px;
-  height: 157px;
+  min-height: 157px;
   align-items: flex-start;
   justify-content: space-between;
   background: #FFFFFF;
@@ -28,10 +28,7 @@
   line-height: 34px;
   color: #232134;
   width: 650px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   display: inline-block;
-  white-space: nowrap;
   margin-top: -5px;
 }
 
