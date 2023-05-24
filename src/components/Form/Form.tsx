@@ -31,7 +31,7 @@ export default function Form({ onFormSubmit }: IFormProps) {
 
   const compareSalary = () => {
     const { slaryFrom, slaryTo } = form.values;
-    if (slaryFrom >= slaryTo) {
+    if (slaryTo && slaryFrom >= slaryTo) {
       return false;
     } else {
       return true;
