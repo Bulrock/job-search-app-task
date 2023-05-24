@@ -72,6 +72,10 @@
 }
 
 @media screen and (max-width: 840px) {
+  .cardWrapper {
+    max-width: calc(100vw - 40px);
+  }
+
   .salaryScheduleWrapper {
     flex-wrap: wrap;
   }
